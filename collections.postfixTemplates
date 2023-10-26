@@ -1,0 +1,3 @@
+## collection conversions ##
+.foreach : convert to List
+	java.util.Map            →  $expr$.forEach((key, value) -> {});
