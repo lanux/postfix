@@ -1,0 +1,2 @@
+.toPoint : convert to point
+    ANY        →  conv.ToPointer($expr$)
