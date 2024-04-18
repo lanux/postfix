@@ -1,2 +1,5 @@
 .toPoint : convert to point
     ANY        →  conv.ToPointer($expr$)
+
+.notBlank : not blank
+    STRING     →  is.NotBlank($expr$)
