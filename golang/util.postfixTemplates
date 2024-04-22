@@ -3,3 +3,15 @@
 
 .notBlank : not blank
     STRING     →  is.NotBlank($expr$)
+
+.timeToMilli : timeToMilli
+	 ANY        →  conv.TimeToMilli($expr$)
+
+.timePtrToMilli : timeToMilli
+	 ANY        →  conv.TimePtrToMilli($expr$)
+
+.timePtrToMilliPtr : TimePtrToMilliPtr
+	 ANY        →  conv.TimePtrToMilliPtr($expr$)
+
+.timestampToTime : TimePtrToMilliPtr
+	 ANY        →  conv.TimestampToTime($expr$)
