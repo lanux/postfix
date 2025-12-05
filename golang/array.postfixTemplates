@@ -1,183 +1,183 @@
 ## 基础操作 ##
 
-.distinct : remove duplicates
+.distinct : Distinct - 移除重复元素
     ARRAY → slices.Distinct($expr$)
 
-.contains : check if contains element
+.contains : Contains - 检查是否包含元素
     ARRAY → slices.Contains($expr$, $VAR0$)
 
-.remove : remove elements
+.remove : Remove - 移除指定元素
     ARRAY → slices.Remove($expr$, $VAR0$)
 
-.copy : copy slice
+.copy : Copy - 复制切片
     ARRAY → slices.Copy($expr$)
 
-.reverse : reverse slice
+.reverse : Reverse - 反转切片
     ARRAY → slices.Reverse($expr$)
 
-.concat : concatenate slices
+.concat : Concat - 连接多个切片
     ARRAY → slices.Concat($expr$)
 
-.or : create slice
+.or : Or - 创建切片
     ARRAY → slices.Or($expr$)
 
 ## 元素访问 ##
 
-.first : get first element
+.first : First - 获取第一个元素
     ARRAY → slices.First($expr$)
 
-.firstOr : get first or default
+.firstOr : FirstOrDefault - 获取第一个元素或默认值
     ARRAY → slices.FirstOrDefault($expr$)
 
-.firstRef : get pointer to first
+.firstRef : FirstRef - 获取第一个元素的指针
     ARRAY → slices.FirstRef($expr$)
 
-.last : get last element
+.last : Last - 获取最后一个元素
     ARRAY → slices.Last($expr$)
 
-.lastOr : get last or default
+.lastOr : LastOrDefault - 获取最后一个元素或默认值
     ARRAY → slices.LastOrDefault($expr$)
 
-.lastRef : get pointer to last
+.lastRef : LastRef - 获取最后一个元素的指针
     ARRAY → slices.LastRef($expr$)
 
-.at : get element at index
+.at : At - 获取指定索引元素
     ARRAY → slices.At($expr$, $VAR0$)
 
-.atOr : get element at index or default
+.atOr : AtOrDefault - 获取指定索引元素或默认值
     ARRAY → slices.AtOrDefault($expr$, $VAR0$)
 
-.after : get pointer after index
+.after : After - 获取指定索引后的指针
     ARRAY → slices.After($expr$, $VAR0$)
 
-.find : find first matching element
+.find : FindFirst - 查找第一个匹配元素
     ARRAY → slices.FindFirst($expr$, func(it $T$) bool { return $VAR0$ })
 
-.findLast : find last matching
+.findLast : FindLast - 查找最后一个匹配元素
     ARRAY → slices.FindLast($expr$, func(it $T$) bool { return $VAR0$ })
 
-.findIndex : find first index
+.findIndex : FindFirstIndex - 查找第一个匹配索引
     ARRAY → slices.FindFirstIndex($expr$, func(it $T$) bool { return $VAR0$ })
 
-.findLastIndex : find last index
+.findLastIndex : FindLastIndex - 查找最后一个匹配索引
     ARRAY → slices.FindLastIndex($expr$, func(it $T$) bool { return $VAR0$ })
 
 ## 映射转换 ##
 
-.map : transform elements
+.map : Map - 映射转换元素
     ARRAY → slices.Map($expr$, func(it $T$) $R$ { return $VAR0$ })
 
-.flatMap : flat map
+.flatMap : Flatting - 扁平化映射
     ARRAY → slices.Flatting($expr$, func(it $T$) []$R$ { return $VAR0$ })
 
-.cast : cast element type
+.cast : Cast - 类型转换
     ARRAY → slices.Cast[$R$]($expr$)
 
-.mapPtr : map to pointers
+.mapPtr : MapPtr - 映射为指针切片
     ARRAY → slices.MapPtr($expr$)
 
-.mapTo : map to target slice
+.mapTo : MapTo - 映射到目标切片
     ARRAY → slices.MapTo(&$VAR0$, $expr$, func(it $T$) $R$ { return $VAR0$ })
 
-.mapNotNull : map non-nil values
+.mapNotNull : MapNotNull - 映射非空值
     ARRAY → slices.MapNotNull($expr$, func(it $T$) $R$ { return $VAR0$ })
 
-.mapFiltered : map with filter
+.mapFiltered : MapFiltered - 带过滤的映射
     ARRAY → slices.MapFiltered($expr$, func(it $T$) ($R$, bool) { return $VAR0$ })
 
-.mapIf : map if condition
+.mapIf : MapIf - 条件映射
     ARRAY → slices.MapIf($expr$, func(it $T$) bool { return $VAR0$ }, func(it $T$) $R$ { return $VAR0$ })
 
-.filterType : filter by type
+.filterType : FilterTypeOf - 按类型过滤
     ARRAY → slices.FilterTypeOf[$R$]($expr$)
 
-.generalize : generalize to any
+.generalize : Generalize - 泛化为any类型
     ARRAY → slices.Generalize($expr$)
 
 ## 过滤筛选 ##
 
-.filter : filter elements
+.filter : Filter - 过滤元素
     ARRAY → slices.Filter($expr$, func(it $T$) bool { return $VAR0$ })
 
-.distinctBy : distinct by key
+.distinctBy : DistinctBy - 按键去重
     ARRAY → slices.DistinctBy($expr$, func(it $T$) $K$ { return $VAR0$ })
 
-.skip : skip element
+.skip : Skip - 跳过元素
     ARRAY → slices.Skip($expr$)
 
-.keep : keep element
+.keep : Keep - 保留元素
     ARRAY → slices.Keep($expr$)
 
 ## 逻辑判断 ##
 
-.all : check if all elements match predicate
+.all : All - 所有元素匹配谓词
     ARRAY → slices.All($expr$, func(it $T$) bool { return $VAR0$ })
 
-.any : check if any element matches predicate
+.any : Any - 任意元素匹配谓词
     ARRAY → slices.Any($expr$, func(it $T$) bool { return $VAR0$ })
 
-.none : check if no elements match
+.none : None - 没有元素匹配谓词
     ARRAY → slices.None($expr$, func(it $T$) bool { return $VAR0$ })
 
-.containsAll : check if contains all
+.containsAll : ContainsAll - 包含所有元素
     ARRAY → slices.ContainsAll($expr$, $VAR0$)
 
-.containsAny : check if contains any
+.containsAny : ContainsAny - 包含任意元素
     ARRAY → slices.ContainsAny($expr$, $VAR0$)
 
-.containsNone : check if contains none
+.containsNone : ContainsNone - 不包含任何元素
     ARRAY → slices.ContainsNone($expr$, $VAR0$)
 
 ## 排序分组 ##
 
-.sort : sort ordered elements
+.sort : Sort - 排序有序元素
     ARRAY → slices.Sort($expr$)
 
-.sortDesc : sort descending
+.sortDesc : SortDesc - 降序排序
     ARRAY → slices.SortDesc($expr$)
 
-.sortBy : sort by selector
+.sortBy : SortBy - 按选择器排序
     ARRAY → slices.SortBy($expr$, func(it $T$) $R$ { return $VAR0$ })
 
-.sortByDesc : sort by selector descending
+.sortByDesc : SortByDesc - 按选择器降序排序
     ARRAY → slices.SortByDesc($expr$, func(it $T$) $R$ { return $VAR0$ })
 
-.sortWith : sort with comparator
+.sortWith : SortWith - 使用比较器排序
     ARRAY → slices.SortWith($expr$, func(l $T$, r $T$) int { return $VAR0$ })
 
-.groupBy : group by key
+.groupBy : GroupBy - 按键分组
     ARRAY → slices.GroupBy($expr$, func(it $T$) ($K$, $V$) { return $VAR0$ })
 
-.groupByKey : group by key to slice
+.groupByKey : GroupByKey - 按键分组到切片
     ARRAY → slices.GroupByKey($expr$, func(it $T$) $K$ { return $VAR0$ })
 
-.associate : create map from slice
+.associate : Associate - 从切片创建映射
     ARRAY → slices.Associate($expr$, func(it $T$) ($K$, $V$) { return $VAR0$ })
 
-.associateBy : map key to element
+.associateBy : AssociateBy - 映射键到元素
     ARRAY → slices.AssociateBy($expr$, func(it $T$) $K$ { return $VAR0$ })
 
-.associateWith : map element to value
+.associateWith : AssociateWith - 映射元素到值
     ARRAY → slices.AssociateWith($expr$, func(it $T$) $V$ { return $VAR0$ })
 
 ## 集合运算 ##
 
-.intersect : intersection of slices
+.intersect : Intersect - 切片交集
     ARRAY → slices.Intersect($expr$, $VAR0$)
 
-.union : union of slices
+.union : Union - 切片并集
     ARRAY → slices.Union($expr$, $VAR0$)
 
-.subtract : subtract slice
+.subtract : Subtract - 切片差集
     ARRAY → slices.Subtract($expr$, $VAR0$)
 
-.flatten : flatten nested slices
+.flatten : Flatten - 展平嵌套切片
     ARRAY → slices.Flatten($expr$)
 
 ## 转换操作 ##
 
-.transform : transform to slice
+.transform : Transform - 转换为切片
     ARRAY → slices.Transform($expr$, func(target *[]$R$) { $VAR0$ })
 
-.transformMap : transform to map
+.transformMap : TransformMap - 转换为映射
     ARRAY → slices.TransformMap($expr$, func(target *map[$K$]$V$) { $VAR0$ })
