@@ -18,8 +18,8 @@
 .concat : Concat - 连接多个切片
     ARRAY → slices.Concat($expr$)
 
-.or : Or - 创建切片
-    ARRAY → slices.Or($expr$)
+.ofSlices : Of - 创建切片
+    ANY → slices.Of($expr$)
 
 ## 元素访问 ##
 
