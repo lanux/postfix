@@ -1,17 +1,181 @@
-.toPoint : convert to point
-    ANY        →  conv.ToPointer($expr$)
+.orZero : return zero value if nil
+    ANY  →  ptrs.OrZero($expr$)
 
-.notBlank : not blank
-    STRING     →  is.NotBlank($expr$)
+.orDefault : return default value if nil
+    ANY  →  ptrs.OrDefault($expr$, $VAR0$)
 
-.timeToMilli : timeToMilli
-	 ANY        →  conv.TimeToMilli($expr$)
+.of : take address of value
+    STRING  →  ptrs.Of($expr$)
+    ANY  →  ptrs.Of($expr$)
 
-.timePtrToMilli : timeToMilli
-	 ANY        →  conv.TimePtrToMilli($expr$)
+## String Utilities ##
+
+.blank : check if string is blank (empty or whitespace)
+    STRING  →  conv.Blank($expr$)
+
+.notBlank : check if string is not blank
+    STRING  →  conv.NotBlank($expr$)
+
+.anyBlank : check if any string is blank
+    STRING  →  conv.AnyBlank($expr$)
+
+.allBlank : check if all strings are blank
+    STRING  →  conv.AllBlank($expr$)
+
+.noneBlank : check if no strings are blank
+    STRING  →  conv.NoneBlank($expr$)
+
+.log : create log
+    ANY  →  var $VAR0$ = logger.GetLogger($expr$)
+
+.trim : trim spaces
+    STRING → strings.TrimSpace($expr$)
+
+.lower : convert to lowercase
+    STRING → strings.ToLower($expr$)
+
+.upper : convert to uppercase
+    STRING → strings.ToUpper($expr$)
+
+.split : split string
+    STRING → strings.Split($expr$, $VAR0$)
+
+.contains : check if string contains subString
+    STRING → strings.Contains($expr$, $VAR0$)
+
+.ifcontains : check if contains
+    STRING → if strings.Contains($expr$, $VAR0$) {$END$}
+
+## Pointer Checks ##
+
+.blankPtr : check if string pointer is nil or blank
+    ANY  →  conv.BlankPtr($expr$)
+
+.notBlankPtr : check if string pointer is not nil and not blank
+    ANY  →  conv.NotBlankPtr($expr$)
+
+.anyBlankPtr : check if any string pointer is blank
+    ANY  →  conv.AnyBlankPtr($expr$)
+
+.allBlankPtr : check if all string pointers are blank
+    ANY  →  conv.AllBlankPtr($expr$)
+
+.noneBlankPtr : check if no string pointers are blank
+    ANY  →  conv.NoneBlankPtr($expr$)
+
+## Boolean Pointer Checks ##
+
+.trueBool : check if bool pointer is true
+    ANY  →  conv.TrueBoolPtr($expr$)
+
+.falseBool : check if bool pointer is false
+    ANY  →  conv.FalseBoolPtr($expr$)
+
+.timeToMilli : TimeToMilli
+    ANY        →  conv.TimeToMilli($expr$)
+
+.timePtrToMilli : TimePtrToMilli
+    ANY        →  conv.TimePtrToMilli($expr$)
 
 .timePtrToMilliPtr : TimePtrToMilliPtr
-	 ANY        →  conv.TimePtrToMilliPtr($expr$)
+    ANY        →  conv.TimePtrToMilliPtr($expr$)
 
-.timestampToTime : TimePtrToMilliPtr
-	 ANY        →  conv.TimestampToTime($expr$)
+.timestampToTime : TimestampToTime
+    ANY        →  conv.TimestampToTime($expr$)
+
+.timestampPtrToTimePtr : TimestampPtrToTimePtr
+    ANY        →  conv.TimestampPtrToTimePtr($expr$)
+
+## ARRAY ###
+.first : get first element
+    ARRAY → $expr$[0]
+
+.last : get last element
+    ARRAY → $expr$[len($expr$)-1]
+
+.ifempty : check if empty
+    ARRAY → if len($expr$) == 0 { $END$ }
+
+.ifnotempty : check if not empty
+    ARRAY → if len($expr$) != 0 { $END$ }
+
+.join : join string slice
+    ARRAY → strings.Join($expr$, $VAR0$)
+
+.toMap : convert slice to map[K]T
+    ARRAY  →  conv.SliceToMap($expr$, func(v $T$) $K$ { return $VAR0$ })
+
+.toMapKV : convert slice to map[K]V
+    ARRAY  →  conv.SliceMapToMap($expr$, func(v $T$) ($K$, $V$) { return $VAR0$ })
+
+.toSet : create set with initial values
+    ANY → sets.From($expr$)
+
+.returnfirst : return first element or default
+    ARRAY → if len($expr$) > 0 { return $expr$[0] }; return $VAR0$
+
+.returnlast : return last element or default
+    ARRAY → if len($expr$) > 0 { return $expr$[len($expr$)-1] }; return $VAR0$
+
+## Map ##
+
+.has : check if key exists
+    MAP → if _, ok := $expr$[$key$]; ok {$END$}
+
+.ife : If map contains key
+    MAP  →  if $value$, ok := $expr$[$key$]; ok {$END$}
+
+.keySet : create set with key
+    ANY → keySet := sets.FromMapKeys($expr$)
+
+.valueSet : create set with value
+    ANY → valueSet := sets.FromMapValues($expr$)
+
+.keys : create slices with key
+    ANY → $VAR0$ := maps.Keys($expr$)
+
+.values : create slices with key
+    ANY → $VAR0$ := maps.Values($expr$)
+
+## Set ##
+
+.newSet : create new set
+    ANY → $VAR0$ := sets.Make[$expr$]()
+
+.setOf : create set with initial values
+    ANY → sets.From[$expr$]($VAR0$)
+
+
+## ANY
+.int64 : convert to int64
+    ANY → int64($expr$)
+
+.int32 : convert to int32
+    ANY → int32($expr$)
+
+.int16 : convert to int16
+    ANY → int16($expr$)
+
+.int8 : convert to int8
+    ANY → int8($expr$)
+
+.int : convert to int
+    ANY → int($expr$)
+
+.p64 : convert to int64 pointer
+    ANY → ptrs.Of(int64($expr$))
+
+.p32 : convert to int32 pointer
+    ANY → ptrs.Of(int32($expr$))
+
+.p16 : convert to int16 pointer
+    ANY → ptrs.Of(int16($expr$))
+
+.p8 : convert to int8 pointer
+    ANY → ptrs.Of(int8($expr$))
+
+.pint : convert to int pointer
+    ANY → ptrs.Of(int($expr$))
+
+.service : generate service struct and constructor
+    ANY → var $expr$ = new$expr$(); type $VAR0$ struct { log logger.LoggerHelper }; func new$expr$() *$VAR0$ { s := new($VAR0$); s.log = logger.GetLogger("$expr$"); return s }
