@@ -1,0 +1,183 @@
+## 基础操作 ##
+
+.distinct : remove duplicates
+    ARRAY → slices.Distinct($expr$)
+
+.contains : check if contains element
+    ARRAY → slices.Contains($expr$, $VAR0$)
+
+.remove : remove elements
+    ARRAY → slices.Remove($expr$, $VAR0$)
+
+.copy : copy slice
+    ARRAY → slices.Copy($expr$)
+
+.reverse : reverse slice
+    ARRAY → slices.Reverse($expr$)
+
+.concat : concatenate slices
+    ARRAY → slices.Concat($expr$)
+
+.or : create slice
+    ARRAY → slices.Or($expr$)
+
+## 元素访问 ##
+
+.first : get first element
+    ARRAY → slices.First($expr$)
+
+.firstOr : get first or default
+    ARRAY → slices.FirstOrDefault($expr$)
+
+.firstRef : get pointer to first
+    ARRAY → slices.FirstRef($expr$)
+
+.last : get last element
+    ARRAY → slices.Last($expr$)
+
+.lastOr : get last or default
+    ARRAY → slices.LastOrDefault($expr$)
+
+.lastRef : get pointer to last
+    ARRAY → slices.LastRef($expr$)
+
+.at : get element at index
+    ARRAY → slices.At($expr$, $VAR0$)
+
+.atOr : get element at index or default
+    ARRAY → slices.AtOrDefault($expr$, $VAR0$)
+
+.after : get pointer after index
+    ARRAY → slices.After($expr$, $VAR0$)
+
+.find : find first matching element
+    ARRAY → slices.FindFirst($expr$, func(it $T$) bool { return $VAR0$ })
+
+.findLast : find last matching
+    ARRAY → slices.FindLast($expr$, func(it $T$) bool { return $VAR0$ })
+
+.findIndex : find first index
+    ARRAY → slices.FindFirstIndex($expr$, func(it $T$) bool { return $VAR0$ })
+
+.findLastIndex : find last index
+    ARRAY → slices.FindLastIndex($expr$, func(it $T$) bool { return $VAR0$ })
+
+## 映射转换 ##
+
+.map : transform elements
+    ARRAY → slices.Map($expr$, func(it $T$) $R$ { return $VAR0$ })
+
+.flatMap : flat map
+    ARRAY → slices.Flatting($expr$, func(it $T$) []$R$ { return $VAR0$ })
+
+.cast : cast element type
+    ARRAY → slices.Cast[$R$]($expr$)
+
+.mapPtr : map to pointers
+    ARRAY → slices.MapPtr($expr$)
+
+.mapTo : map to target slice
+    ARRAY → slices.MapTo(&$VAR0$, $expr$, func(it $T$) $R$ { return $VAR0$ })
+
+.mapNotNull : map non-nil values
+    ARRAY → slices.MapNotNull($expr$, func(it $T$) $R$ { return $VAR0$ })
+
+.mapFiltered : map with filter
+    ARRAY → slices.MapFiltered($expr$, func(it $T$) ($R$, bool) { return $VAR0$ })
+
+.mapIf : map if condition
+    ARRAY → slices.MapIf($expr$, func(it $T$) bool { return $VAR0$ }, func(it $T$) $R$ { return $VAR0$ })
+
+.filterType : filter by type
+    ARRAY → slices.FilterTypeOf[$R$]($expr$)
+
+.generalize : generalize to any
+    ARRAY → slices.Generalize($expr$)
+
+## 过滤筛选 ##
+
+.filter : filter elements
+    ARRAY → slices.Filter($expr$, func(it $T$) bool { return $VAR0$ })
+
+.distinctBy : distinct by key
+    ARRAY → slices.DistinctBy($expr$, func(it $T$) $K$ { return $VAR0$ })
+
+.skip : skip element
+    ARRAY → slices.Skip($expr$)
+
+.keep : keep element
+    ARRAY → slices.Keep($expr$)
+
+## 逻辑判断 ##
+
+.all : check if all elements match predicate
+    ARRAY → slices.All($expr$, func(it $T$) bool { return $VAR0$ })
+
+.any : check if any element matches predicate
+    ARRAY → slices.Any($expr$, func(it $T$) bool { return $VAR0$ })
+
+.none : check if no elements match
+    ARRAY → slices.None($expr$, func(it $T$) bool { return $VAR0$ })
+
+.containsAll : check if contains all
+    ARRAY → slices.ContainsAll($expr$, $VAR0$)
+
+.containsAny : check if contains any
+    ARRAY → slices.ContainsAny($expr$, $VAR0$)
+
+.containsNone : check if contains none
+    ARRAY → slices.ContainsNone($expr$, $VAR0$)
+
+## 排序分组 ##
+
+.sort : sort ordered elements
+    ARRAY → slices.Sort($expr$)
+
+.sortDesc : sort descending
+    ARRAY → slices.SortDesc($expr$)
+
+.sortBy : sort by selector
+    ARRAY → slices.SortBy($expr$, func(it $T$) $R$ { return $VAR0$ })
+
+.sortByDesc : sort by selector descending
+    ARRAY → slices.SortByDesc($expr$, func(it $T$) $R$ { return $VAR0$ })
+
+.sortWith : sort with comparator
+    ARRAY → slices.SortWith($expr$, func(l $T$, r $T$) int { return $VAR0$ })
+
+.groupBy : group by key
+    ARRAY → slices.GroupBy($expr$, func(it $T$) ($K$, $V$) { return $VAR0$ })
+
+.groupByKey : group by key to slice
+    ARRAY → slices.GroupByKey($expr$, func(it $T$) $K$ { return $VAR0$ })
+
+.associate : create map from slice
+    ARRAY → slices.Associate($expr$, func(it $T$) ($K$, $V$) { return $VAR0$ })
+
+.associateBy : map key to element
+    ARRAY → slices.AssociateBy($expr$, func(it $T$) $K$ { return $VAR0$ })
+
+.associateWith : map element to value
+    ARRAY → slices.AssociateWith($expr$, func(it $T$) $V$ { return $VAR0$ })
+
+## 集合运算 ##
+
+.intersect : intersection of slices
+    ARRAY → slices.Intersect($expr$, $VAR0$)
+
+.union : union of slices
+    ARRAY → slices.Union($expr$, $VAR0$)
+
+.subtract : subtract slice
+    ARRAY → slices.Subtract($expr$, $VAR0$)
+
+.flatten : flatten nested slices
+    ARRAY → slices.Flatten($expr$)
+
+## 转换操作 ##
+
+.transform : transform to slice
+    ARRAY → slices.Transform($expr$, func(target *[]$R$) { $VAR0$ })
+
+.transformMap : transform to map
+    ARRAY → slices.TransformMap($expr$, func(target *map[$K$]$V$) { $VAR0$ })
